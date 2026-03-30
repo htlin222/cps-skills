@@ -42,7 +42,7 @@ Copy this checklist and track progress:
 - [ ] Phase 7: Final Diagnosis → Validate (convergence, MNM exclusion, unification test)
 ```
 
-**Validation**: After each phase, complete the corresponding checklist from [validation-checklist.md](references/validation-checklist.md) and append to `VALIDATION.md`. Phase 1 Red Flag History is a **HARD GATE** — must pass before proceeding.
+**Validation**: After each phase, complete the corresponding checklist from [validation-checklist.md](references/safety/validation-checklist.md) and append to `VALIDATION.md`. Phase 1 Red Flag History is a **HARD GATE** — must pass before proceeding.
 
 ### Phase 1: Case Intake & Setup
 
@@ -56,7 +56,7 @@ Copy this checklist and track progress:
 
 ### Phase 2: Symptom Mapping & Textbook Extraction
 
-1. Identify chief complaint(s) and map to textbook chapters using [references/chapter-map.md](references/chapter-map.md)
+1. Identify chief complaint(s) and map to textbook chapters using [references/core/chapter-map.md](references/core/chapter-map.md)
 2. Read the relevant pre-distilled chapter references (typically 1-3). For example, chest pain + dyspnea:
    - Read [references/chapters/ch09-chest-pain.md](references/chapters/ch09-chest-pain.md)
    - Read [references/chapters/ch15-dyspnea.md](references/chapters/ch15-dyspnea.md)
@@ -69,29 +69,29 @@ Copy this checklist and track progress:
 
 ### Phase 3: Initial DDx — Round 1 (Attending Physician)
 
-Adopt the **Attending Physician (Internal Medicine)** persona. See [references/personas.md](references/personas.md).
+Adopt the **Attending Physician (Internal Medicine)** persona. See [references/core/personas.md](references/core/personas.md).
 
 1. Write a **problem representation**: "This is a [age][sex] with [key PMH] presenting with [duration] of [chief complaint], associated with [key features], in the setting of [relevant context]"
 2. Generate **Top 10 DDx** with pre-test probabilities:
    - Use epidemiologic prevalence for the symptom in the relevant clinical setting
    - Adjust for demographics (age, sex, risk factors)
-   - Flag all **must-not-miss** diagnoses regardless of probability — see [references/ddx-framework.md](references/ddx-framework.md)
+   - Flag all **must-not-miss** diagnoses regardless of probability — see [references/safety/ddx-framework.md](references/safety/ddx-framework.md)
    - Use both anatomic and pathophysiologic (VINDICATE) approaches
 3. For each diagnosis, list key supporting and opposing evidence from the scenario
-4. Write output to `round-1.md` using the template from [references/output-templates.md](references/output-templates.md)
+4. Write output to `round-1.md` using the template from [references/templates/output-templates.md](references/templates/output-templates.md)
 
 ### Phase 4: Diagnostic Testing — Rounds 2-3
 
 #### Round 2: Radiology & Pathology
 
-Activate personas based on available data (see [references/personas.md](references/personas.md)):
+Activate personas based on available data (see [references/core/personas.md](references/core/personas.md)):
 
 - **Radiologist**: If imaging data present (CXR, CT, MRI, US, etc.)
 - **Pathologist**: If lab/biopsy data present (CBC, CMP, UA, cultures, histology)
 
 For each finding:
 1. Provide structured interpretation
-2. Look up the **likelihood ratio** — use [references/bayesian-reasoning.md](references/bayesian-reasoning.md) for common LRs
+2. Look up the **likelihood ratio** — use [references/core/bayesian-reasoning.md](references/core/bayesian-reasoning.md) for common LRs
 3. Apply LR to update the probability for each relevant diagnosis
 4. Write output to `round-2.md`
 
@@ -148,7 +148,7 @@ After all rounds are complete, compile all likelihood ratios applied and run the
 3. Review the output probability table
 4. Write to `probability-table.md`
 
-See [references/bayesian-reasoning.md](references/bayesian-reasoning.md) for formulas and common LR values.
+See [references/core/bayesian-reasoning.md](references/core/bayesian-reasoning.md) for formulas and common LR values.
 
 ### Phase 7: Final Diagnosis — Round 5 (Diagnostic Conference)
 
@@ -160,7 +160,7 @@ Synthesize all rounds into the final diagnosis:
 4. Document **why not** for each alternative in the Top 10
 5. List **must-not-miss diagnoses** that were ruled out, and how
 6. Provide **teaching points** from the case
-7. Write `FINAL_DX.md` using the template from [references/output-templates.md](references/output-templates.md)
+7. Write `FINAL_DX.md` using the template from [references/templates/output-templates.md](references/templates/output-templates.md)
 
 ---
 
@@ -168,7 +168,7 @@ Synthesize all rounds into the final diagnosis:
 
 Search for challenging clinical cases to test the CPS skill.
 
-1. Use WebSearch with queries from [references/case-discovery.md](references/case-discovery.md):
+1. Use WebSearch with queries from [references/discovery/case-discovery.md](references/discovery/case-discovery.md):
    - `"clinical problem-solving" site:nejm.org [topic]`
    - `"case records" site:nejm.org [topic]`
    - `"case report" site:casereports.bmj.com [topic]`
@@ -176,7 +176,7 @@ Search for challenging clinical cases to test the CPS skill.
 3. When the user selects a case, extract key information and format as SCENARIO.md
 4. Offer to run the full CPS workflow on the formatted scenario
 
-Difficulty levels: See [references/case-discovery.md](references/case-discovery.md)
+Difficulty levels: See [references/discovery/case-discovery.md](references/discovery/case-discovery.md)
 
 ---
 
@@ -208,13 +208,13 @@ Review and update an existing case:
 Retrospective evaluation when the correct diagnosis is known (e.g., NEJM answer reveal):
 
 1. Read SCENARIO.md, all round files, and VALIDATION.md from the case directory
-2. Copy template from [references/retrospective-template.md](references/retrospective-template.md)
+2. Copy template from [references/templates/retrospective-template.md](references/templates/retrospective-template.md)
 3. Complete **Diagnostic Trajectory Analysis** (Q1-Q4: was correct Dx in Top 10? Which pivot? Earliest data?)
 4. **Grade each phase A-F** with specific failure modes (anchoring, knowledge gap, trigger not fired, etc.)
 5. Complete **Safety Check Retrospective** table (should-have-fired vs did-fire)
 6. Document **Lessons Learned** (new safety checks, reference gaps, workflow changes)
 7. Write `RETROSPECTIVE.md` to the case directory
-8. Write `PERFORMANCE.md` using template from [references/performance-metrics.md](references/performance-metrics.md)
+8. Write `PERFORMANCE.md` using template from [references/templates/performance-metrics.md](references/templates/performance-metrics.md)
 9. Update `case/PERFORMANCE_TRACKER.md` with this case's metrics row
 
 ---
@@ -262,20 +262,37 @@ T: __ HR: __ BP: __/__ RR: __ SpO2: __%
 
 ---
 
-## Reference Files
+## Reference Files (Sub-Module Structure)
 
-| Reference | Content |
-|-----------|---------|
-| [personas.md](references/personas.md) | 8 persona definitions with activation rules |
-| [bayesian-reasoning.md](references/bayesian-reasoning.md) | LR formulas, common LR values, worked examples |
-| [output-templates.md](references/output-templates.md) | Templates for FINAL_DX.md, round-N.md, probability-table.md |
-| [chapter-map.md](references/chapter-map.md) | Symptom → textbook chapter mapping (links to distilled chapters) |
-| [chapters/](references/chapters/) | 33 pre-distilled chapter references with DDx, LRs, algorithms |
-| [ddx-framework.md](references/ddx-framework.md) | DDx generation approaches and must-not-miss lists |
-| [case-discovery.md](references/case-discovery.md) | Finding challenging cases from medical literature |
-| [validation-checklist.md](references/validation-checklist.md) | Step validation rules for each phase |
-| [retrospective-template.md](references/retrospective-template.md) | Post-case grading template (when answer known) |
-| [performance-metrics.md](references/performance-metrics.md) | Cross-case metrics and tracking |
+Only `core/` loads every run. Others load on demand to minimize context usage.
+
+**`core/`** — Always loaded (~386 lines)
+
+| File | Lines | Content |
+|------|-------|---------|
+| [chapter-map.md](references/core/chapter-map.md) | 73 | Symptom → chapter mapping |
+| [personas.md](references/core/personas.md) | 149 | 8 persona definitions + activation rules |
+| [bayesian-reasoning.md](references/core/bayesian-reasoning.md) | 164 | LR formulas + common clinical LR table |
+
+**`chapters/`** — Load 1-3 per case (~80-120 lines each)
+
+| [chapters/ch01-ch33](references/chapters/) | 33 files | Evidence-based DDx, LRs, algorithms per symptom |
+
+**`templates/`** — Load when writing output
+
+| [output-templates.md](references/templates/output-templates.md) | 158 | FINAL_DX, round-N, probability-table templates |
+| [retrospective-template.md](references/templates/retrospective-template.md) | 106 | Post-case grading (for `/cps retro`) |
+| [performance-metrics.md](references/templates/performance-metrics.md) | 56 | Cross-case metrics definitions |
+
+**`safety/`** — Load during validation
+
+| [validation-checklist.md](references/safety/validation-checklist.md) | 125 | Step validation per phase |
+| [ddx-framework.md](references/safety/ddx-framework.md) | 144 | VINDICATE + must-not-miss lists |
+| [rare-causes.md](references/safety/rare-causes.md) | 63 | NF1, KD, SCAD, PXE, Fabry... |
+
+**`discovery/`** — Load only for `/cps discover`
+
+| [case-discovery.md](references/discovery/case-discovery.md) | 80 | Finding challenging cases from literature |
 
 ## Scripts
 
