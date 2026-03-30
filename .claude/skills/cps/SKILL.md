@@ -24,6 +24,7 @@ Models the NEJM Clinical Problem-Solving format. Multi-persona diagnostic rounds
 | `/cps discover [topic]` | Search for challenging cases from medical literature |
 | `/cps round [case-dir] N` | Run additional round N on an existing case |
 | `/cps review [case-dir]` | Review and update DDx for an existing case |
+| `/cps retro [case-dir] [correct-dx]` | Retrospective evaluation after answer revealed |
 
 ---
 
@@ -32,14 +33,16 @@ Models the NEJM Clinical Problem-Solving format. Multi-persona diagnostic rounds
 Copy this checklist and track progress:
 
 ```
-- [ ] Phase 1: Case Intake & Setup
-- [ ] Phase 2: Symptom Mapping & Textbook Extraction
-- [ ] Phase 3: Initial DDx (Attending Physician)
-- [ ] Phase 4: Multi-Persona Rounds (Rounds 2-3)
-- [ ] Phase 5: Evidence Search & Literature Review (Round 4)
+- [ ] Phase 1: Case Intake & Setup → Validate (Red Flag History HARD GATE)
+- [ ] Phase 2: Symptom Mapping & DDx → Validate (MNM coverage, Syndromic Screen)
+- [ ] Phase 3: Initial DDx (Attending) → Validate (LR completeness, Rare Cause Search)
+- [ ] Phase 4: Multi-Persona Rounds → Validate (Hypothesis Space Audit after EACH round)
+- [ ] Phase 5: Evidence Search (Round 4)
 - [ ] Phase 6: Bayesian Probability Update
-- [ ] Phase 7: Final Diagnosis Assembly (Round 5)
+- [ ] Phase 7: Final Diagnosis → Validate (convergence, MNM exclusion, unification test)
 ```
+
+**Validation**: After each phase, complete the corresponding checklist from [validation-checklist.md](references/validation-checklist.md) and append to `VALIDATION.md`. Phase 1 Red Flag History is a **HARD GATE** — must pass before proceeding.
 
 ### Phase 1: Case Intake & Setup
 
@@ -200,6 +203,22 @@ Review and update an existing case:
 
 ---
 
+## Retro Subcommand (`/cps retro [case-dir] [correct-dx]`)
+
+Retrospective evaluation when the correct diagnosis is known (e.g., NEJM answer reveal):
+
+1. Read SCENARIO.md, all round files, and VALIDATION.md from the case directory
+2. Copy template from [references/retrospective-template.md](references/retrospective-template.md)
+3. Complete **Diagnostic Trajectory Analysis** (Q1-Q4: was correct Dx in Top 10? Which pivot? Earliest data?)
+4. **Grade each phase A-F** with specific failure modes (anchoring, knowledge gap, trigger not fired, etc.)
+5. Complete **Safety Check Retrospective** table (should-have-fired vs did-fire)
+6. Document **Lessons Learned** (new safety checks, reference gaps, workflow changes)
+7. Write `RETROSPECTIVE.md` to the case directory
+8. Write `PERFORMANCE.md` using template from [references/performance-metrics.md](references/performance-metrics.md)
+9. Update `case/PERFORMANCE_TRACKER.md` with this case's metrics row
+
+---
+
 ## SCENARIO.md Input Format
 
 Cases can be free-form text, but this structure is recommended:
@@ -254,6 +273,9 @@ T: __ HR: __ BP: __/__ RR: __ SpO2: __%
 | [chapters/](references/chapters/) | 33 pre-distilled chapter references with DDx, LRs, algorithms |
 | [ddx-framework.md](references/ddx-framework.md) | DDx generation approaches and must-not-miss lists |
 | [case-discovery.md](references/case-discovery.md) | Finding challenging cases from medical literature |
+| [validation-checklist.md](references/validation-checklist.md) | Step validation rules for each phase |
+| [retrospective-template.md](references/retrospective-template.md) | Post-case grading template (when answer known) |
+| [performance-metrics.md](references/performance-metrics.md) | Cross-case metrics and tracking |
 
 ## Scripts
 

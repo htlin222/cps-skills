@@ -74,6 +74,18 @@ def main():
         with open(prob_path, "w") as f:
             f.write(PROBABILITY_TABLE_TEMPLATE)
 
+    # Create validation log (only if doesn't exist or empty)
+    val_path = os.path.join(case_dir, "VALIDATION.md")
+    if not os.path.isfile(val_path) or os.path.getsize(val_path) == 0:
+        with open(val_path, "w") as f:
+            f.write("# Validation Log\n")
+
+    # Create performance scorecard (only if doesn't exist or empty)
+    perf_path = os.path.join(case_dir, "PERFORMANCE.md")
+    if not os.path.isfile(perf_path) or os.path.getsize(perf_path) == 0:
+        with open(perf_path, "w") as f:
+            f.write("# Performance Scorecard\n")
+
     # Create final diagnosis file (only if doesn't exist or empty)
     final_path = os.path.join(case_dir, "FINAL_DX.md")
     if not os.path.isfile(final_path) or os.path.getsize(final_path) == 0:
