@@ -1,0 +1,22 @@
+# Environment & secrets
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Large binaries
+docs/*.epub
+
+# Temporary extraction files
+/tmp/
+cps_raw_ch*.md
+
+# Patient data protection
+# Never commit real patient data — use de-identified teaching cases only
+*.phi
+*.patient
+case/**/patient_info.*
+case/**/real_case.*
