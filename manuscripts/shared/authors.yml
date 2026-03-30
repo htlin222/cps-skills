@@ -1,0 +1,10 @@
+authors:
+  - name: Hsieh-Ting Lin
+    orcid: 0000-0000-0000-0000
+    affiliations:
+      - name: Department of Internal Medicine
+        institution: Placeholder University Hospital
+        city: Taipei
+        country: Taiwan
+    corresponding: true
+    email: placeholder@example.com

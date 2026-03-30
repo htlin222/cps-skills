@@ -1,0 +1,114 @@
+---
+title: "AI-Assisted Clinical Problem Solving"
+subtitle: "A Multi-Persona Bayesian Diagnostic Reasoning Framework for Medical Education"
+author:
+  - name: Hsieh-Ting Lin
+    affiliations:
+      - Placeholder University Hospital, Taipei, Taiwan
+format:
+  typst:
+    papersize: a0
+    columns: 3
+    margin:
+      x: 2cm
+      y: 2cm
+bibliography: ../shared/references.bib
+---
+
+# Background
+
+Clinical diagnostic reasoning demands integration of multi-disciplinary expertise and systematic evaluation of diagnostic tests. We developed an AI-assisted **Clinical Problem Solving (CPS)** framework that models the NEJM Clinical Problem-Solving format using multi-persona Bayesian reasoning with likelihood ratios [@mcgee2018; @simel2009].
+
+# Framework Architecture
+
+**SCENARIO** &rarr; Symptom Mapping &rarr; **Round 1** (Attending) &rarr; **Round 2** (Radiology + Pathology) &rarr; **Round 3** (Subspecialist) &rarr; **Round 4** (EBM Evidence) &rarr; **Round 5** (Conference) &rarr; **FINAL_DX**
+
+## Eight Medical Personas
+
+| Persona | Role | Trigger |
+|---------|------|---------|
+| Attending (IM) | H&P, initial DDx | Always |
+| Radiologist | Imaging interpretation | Imaging data |
+| Pathologist | Lab/biopsy interpretation | Lab data |
+| Cardiologist | ECG, echo, cath | Chest pain, syncope |
+| Pulmonologist | PFTs, ABG | Dyspnea, wheezing |
+| Infectious Disease | Cultures, serologies | Fever |
+| Neurologist | Neuro exam, imaging | Headache, AMS |
+| EBM Specialist | Literature search | Always |
+
+## Bayesian LR Methodology
+
+$$\text{Post-test odds} = \text{Pre-test odds} \times LR$$
+
+$$\text{Post-test probability} = \frac{\text{Post-test odds}}{1 + \text{Post-test odds}}$$
+
+Sequential LR application creates a transparent probability cascade for each diagnosis [@fagan1975].
+
+# Case 1: Lambert-Eaton Myasthenic Syndrome
+
+**76F**: 6-month progressive proximal weakness, bilateral ptosis, areflexia, respiratory failure, prior SIADH.
+
+| Finding | LR | Pre | Post |
+|---------|-----|-----|------|
+| Proximal weakness + areflexia | x5.0 | 35.0% | 72.9% |
+| Low/absent CMAPs | x8.0 | 72.9% | 95.6% |
+| SIADH (autonomic) | x3.0 | 95.6% | 98.5% |
+| Failed MG therapy | x4.0 | 98.5% | **99.6%** |
+
+**Final Dx**: LEMS, paraneoplastic from SCLC. Correctly identified by Round 4.
+
+# Case 2: NF1 Vasculopathy --- Five Diagnostic Pivots
+
+**38F**: Mail carrier, prior MI at <38, sudden chest pain, NTG non-responsive.
+
+| Pivot | New Data | Dx | Prob |
+|-------|----------|-----|------|
+| 1 | Young F + prior MI | SCAD | 97.5% |
+| 2 | Multi-territory MI | APS | 94.7% |
+| 3 | 3-vessel aneurysms | Kawasaki | 90% |
+| 4 | Skin papules | KD/NF1 | 50/10% |
+| 5 | CAL spots + freckling | **NF1** | **>95%** |
+
+**Key lesson**: Bayesian reasoning only works within the hypothesis space you define. NF1 was not in the initial Top 10.
+
+# Validation Module
+
+## Six Safety Checks (Derived from Case Failures)
+
+| Check | Trigger | Grade Impact |
+|-------|---------|-------------|
+| Red Flag History | Unusual PMH age | D &rarr; B |
+| Syndromic Screen | Young + unclear etiology | C+ &rarr; A |
+| Rare Cause Search | Unexpected pattern | B- &rarr; A |
+| Hypothesis Space Audit | After every round | Mandatory |
+| Genetic Pattern Recognition | AD family history | B+ &rarr; A |
+| Hypothesis Humility | Always | Principle |
+
+## Retrospective Grading (Case 2)
+
+| Phase | Grade | Failure Mode |
+|-------|-------|-------------|
+| 1: Case Intake | D | Anchoring on SCAD |
+| 2: DDx Generation | C+ | No syndromic screen |
+| 3: Diagnostic Testing | B- | NF1 not in knowledge base |
+| 4: Subspecialty | B+ | NF1 underweighted |
+| 5: Final Dx | A | Instant recognition |
+
+# Performance Metrics
+
+| Metric | Case 1 | Case 2 |
+|--------|--------|--------|
+| Diagnostic Accuracy | 1.0 | 1.0 |
+| Pivot Efficiency | Round 1 | Round 5 |
+| MNM Sensitivity | 100% | 100% |
+| Hypothesis Coverage | Yes (R1) | No (R4) |
+| LR Completeness | 85% | 78% |
+
+# Conclusions
+
+1. AI-assisted CPS provides **transparent, quantifiable** diagnostic reasoning with LR-based probability cascades
+2. The **validation-retrospective cycle** converts case failures into safety checks, enabling continuous improvement
+3. **Bayesian reasoning is bounded by the hypothesis space** --- the most important pedagogical insight for teaching DDx construction
+4. Multi-persona rounds with subspecialty activation ensure **comprehensive** case analysis
+
+# References

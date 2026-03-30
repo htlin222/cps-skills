@@ -1,0 +1,271 @@
+---
+title: "AI-Assisted Clinical Problem Solving"
+subtitle: "A Multi-Persona Bayesian Diagnostic Reasoning Framework"
+author: "Hsieh-Ting Lin"
+institute: "Placeholder University Hospital, Taipei"
+date: "November 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    transition: fade
+    width: 1600
+    height: 900
+    fontsize: 1.8em
+    code-fold: true
+    mermaid:
+      theme: neutral
+bibliography: ../shared/references.bib
+---
+
+## The Problem {.center}
+
+::: {.callout-important}
+Clinical diagnostic reasoning is **complex**, requiring multi-disciplinary expertise and systematic probability updating.
+:::
+
+- Diagnostic errors contribute to ~10% of patient deaths
+- Traditional teaching: case-based, but lacks **quantitative** probability tracking
+- How can AI help structure and teach diagnostic reasoning?
+
+## Our Approach: CPS Framework
+
+```{mermaid}
+%%| fig-width: 14
+graph LR
+    A["SCENARIO.md<br>(Patient Case)"] --> B["Symptom<br>Mapping"]
+    B --> C["Round 1<br>Attending"]
+    C --> D["Round 2<br>Radiology +<br>Pathology"]
+    D --> E["Round 3<br>Subspecialist"]
+    E --> F["Round 4<br>EBM Evidence"]
+    F --> G["Round 5<br>Diagnostic<br>Conference"]
+    G --> H["FINAL_DX.md"]
+
+    style A fill:#e1f5fe,stroke:#0288d1
+    style H fill:#c8e6c9,stroke:#388e3c
+```
+
+Models the **NEJM Clinical Problem-Solving** format with Bayesian LR reasoning
+
+## Eight Medical Personas
+
+| Persona | Round | Role | Activated When |
+|---------|-------|------|----------------|
+| **Attending (IM)** | 1 | H&P, problem representation, initial DDx | Always |
+| **Radiologist** | 2 | Imaging interpretation with LRs | Imaging data present |
+| **Pathologist** | 2 | Lab/biopsy interpretation with LRs | Lab data present |
+| **Cardiologist** | 3 | ECG, echo, cath, risk scores | Chest pain, syncope |
+| **Pulmonologist** | 3 | PFTs, ABG, chest CT | Dyspnea, wheezing |
+| **Infectious Disease** | 3 | Cultures, serologies, travel DDx | Fever |
+| **Neurologist** | 3 | Neuro exam, localization | Headache, AMS |
+| **EBM Specialist** | 4 | Literature search, guidelines | Always |
+
+## Bayesian LR Methodology
+
+::: {.columns}
+::: {.column width="50%"}
+
+### The Formula
+
+$$\text{Post-test odds} = \text{Pre-test odds} \times LR$$
+
+$$\text{Probability} = \frac{\text{odds}}{1 + \text{odds}}$$
+
+Each clinical finding **shifts** the probability via its likelihood ratio [@fagan1975; @mcgee2018].
+:::
+
+::: {.column width="50%"}
+
+### LR Interpretation
+
+| LR+ | Effect |
+|-----|--------|
+| >10 | Strong rule-in |
+| 5-10 | Moderate |
+| 2-5 | Small |
+| 1 | Useless |
+
+| LR- | Effect |
+|-----|--------|
+| <0.1 | Strong rule-out |
+| 0.1-0.2 | Moderate |
+| 0.2-0.5 | Small |
+:::
+:::
+
+## Case 1: 76F Dyspnea + Progressive Weakness
+
+::: {.callout-note}
+6-month progressive proximal weakness, bilateral ptosis, **areflexia**, intact sensation, normal CK, low CMAPs, prior SIADH, failed MG therapy
+:::
+
+**Problem representation**: 76F with progressive neuromuscular respiratory failure + areflexia + autonomic dysfunction
+
+## Case 1: Bayesian Probability Cascade
+
+| Finding | LR | Pre-test | Post-test |
+|---------|-----|----------|-----------|
+| Proximal weakness + areflexia | x5.0 | 35.0% | 72.9% |
+| Low/absent CMAPs | x8.0 | 72.9% | 95.6% |
+| SIADH (autonomic) | x3.0 | 95.6% | 98.5% |
+| Failed MG therapy | x4.0 | 98.5% | **99.6%** |
+| Heavy smoker (SCLC risk) | x2.5 | 99.6% | 99.8% |
+
+::: {.fragment}
+**Final Dx: Lambert-Eaton Myasthenic Syndrome** (paraneoplastic, SCLC)
+
+Correctly identified by Round 4 with transparent reasoning chain
+:::
+
+## Case 2: 38F Sudden Chest Pain
+
+::: {.callout-note}
+Mail carrier, **prior MI at age <38**, sudden substernal chest pain, 4 NTG tablets without relief
+:::
+
+The key question: **Why does a 38-year-old woman have a prior MI?**
+
+## Case 2: Pivot 1-2
+
+| Pivot | New Data | Leading Dx | Prob |
+|-------|----------|-----------|------|
+| **1** | Young F + prior MI | SCAD | 97.5% |
+| **2** | Multi-territory MI + anemia | APS | 94.7% |
+
+::: {.fragment}
+Both seemed highly likely...
+
+But both were **wrong**.
+:::
+
+## Case 2: Pivot 3 --- The Cath
+
+Coronary angiography revealed:
+
+- **LAD**: Aneurysmal, thrombosed at tortuous bend (proximal to prior stent)
+- **LCx**: Diffusely aneurysmal
+- **RCA**: Aneurysmal with partial occlusion
+
+::: {.fragment}
+**Diffuse 3-vessel coronary aneurysms** --- completely unexpected.
+
+SCAD and APS **excluded**. New leading dx: Kawasaki Disease (90%)
+:::
+
+## Case 2: Pivot 4-5 --- The Skin Exam
+
+Rheumatology noted subtle skin findings. Dermatology confirmed:
+
+- **>6 cafe-au-lait spots** >1.5 cm
+- **Axillary freckling** (Crowe sign)
+- **Multiple neurofibromas**
+
+::: {.fragment .highlight-red}
+**3/7 NF1 diagnostic criteria met**
+
+Final Dx: **Neurofibromatosis Type 1 Vasculopathy** (>95%)
+:::
+
+## The Key Insight
+
+::: {.callout-warning}
+## Bayesian Reasoning is Bounded by the Hypothesis Space
+
+Post-test probability can **never exceed** the probability mass assigned to hypotheses in your differential.
+
+If NF1 isn't in your Top 10, no amount of LR updating will find it.
+:::
+
+::: {.fragment}
+This is the most important lesson for teaching differential diagnosis construction.
+:::
+
+## Safety Checks: Born from Failure
+
+| Check | What It Catches | Derived From |
+|-------|----------------|-------------|
+| Red Flag History | Unusual PMH not investigated | Pivot 1 failure (Grade D) |
+| Syndromic Screen | Skin/eye/CTD exam not done | Pivot 2 failure (Grade C+) |
+| Rare Cause Search | Unexpected pattern not searched | Pivot 3 failure (Grade B-) |
+| Hypothesis Space Audit | "Is there a Dx NOT in Top 10?" | Core Bayesian limitation |
+| Genetic Pattern Recognition | AD family history not weighted | Pivot 4 (Grade B+) |
+| Hypothesis Humility | DDx is never closed | Meta-principle |
+
+## Validation Module
+
+### Per-Phase Validation Checklist
+
+```
+Phase 1: Red Flag History Check (HARD GATE)
+Phase 2: DDx completeness, MNM coverage, syndromic screen trigger
+Phase 3: LR application (>80% target), rare cause search
+Phase 4: Hypothesis Space Audit (MANDATORY after each round)
+Phase 5: Bayesian convergence, MNM exclusion, unification test
+```
+
+### Retrospective Grading
+
+Each phase graded A-F with specific failure modes. Safety checks evaluated: should-have-fired vs did-fire.
+
+## Performance Metrics
+
+| Metric | Case 1 (LEMS) | Case 2 (NF1) |
+|--------|---------------|--------------|
+| Diagnostic Accuracy | 1.0 (Correct) | 1.0 (Correct) |
+| Pivot Efficiency | Round 1 | Round 5 |
+| MNM Sensitivity | 100% | 100% |
+| Hypothesis Coverage | Yes (Round 1) | No (Round 4) |
+| LR Completeness | 85% | 78% |
+| Overall Grade | A | B- |
+
+## The Improvement Cycle
+
+```{mermaid}
+%%| fig-width: 10
+graph TD
+    A[Run Case] --> B[Validate Each Phase]
+    B --> C[Complete Case]
+    C --> D[Retrospective Grading]
+    D --> E{Failures Found?}
+    E -->|Yes| F[Create Safety Check]
+    F --> G[Update Skill]
+    G --> A
+    E -->|No| H[Update Performance Tracker]
+    H --> A
+
+    style F fill:#ffcdd2
+    style G fill:#c8e6c9
+```
+
+## Conclusions
+
+1. **Transparent reasoning**: Every probability shift cites a likelihood ratio with source
+
+2. **Continuous improvement**: Case failures drive safety check development
+
+3. **Pedagogical value**: The hypothesis space limitation is a teachable moment for DDx construction
+
+4. **Multi-perspective**: 8 personas ensure no single viewpoint dominates
+
+## Future Directions
+
+- **Family Doctor Mode**: Leverage longitudinal patient data for earlier diagnosis
+- **More test cases**: Stress-test with NEJM CPC cases across all 33 symptom categories
+- **Performance benchmarking**: Track diagnostic accuracy and pivot efficiency over time
+- **Integration with literature search**: Automated evidence retrieval via PubMed/Scopus APIs
+
+## {.center}
+
+::: {.r-fit-text}
+Thank You
+:::
+
+**GitHub**: [github.com/htlin222/cps-skills](https://github.com/htlin222/cps-skills)
+
+**Contact**: placeholder@example.com
+
+::: {.callout-tip}
+Scan QR code for the repository
+:::
+
+## References

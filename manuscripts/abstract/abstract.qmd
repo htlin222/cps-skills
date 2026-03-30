@@ -1,0 +1,28 @@
+---
+title: "AI-Assisted Clinical Problem Solving: A Multi-Persona Bayesian Diagnostic Reasoning Framework for Medical Education"
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    fontsize: 11pt
+    geometry: margin=2.5cm
+bibliography: ../shared/references.bib
+---
+
+## Background
+
+Clinical diagnostic reasoning requires integration of multi-disciplinary expertise, systematic evaluation of diagnostic tests, and transparent probability updating. Traditional clinical education relies on case-based learning, but lacks structured frameworks for tracking how each clinical finding shifts diagnostic probabilities. We developed an AI-assisted Clinical Problem Solving (CPS) skill that models the NEJM Clinical Problem-Solving format using multi-persona Bayesian reasoning with likelihood ratios (LRs).
+
+## Methods
+
+The CPS framework comprises: (1) 33 evidence-based chapter references with extracted LR values from primary literature [@mcgee2018; @simel2009]; (2) eight medical personas (attending physician, radiologist, pathologist, cardiologist, pulmonologist, infectious disease specialist, neurologist, and EBM specialist) activated by case-specific triggers; (3) a Bayesian LR calculator that applies sequential probability updates [@fagan1975]; (4) six safety checks derived from retrospective case analysis; and (5) a validation module with per-phase checklists, retrospective grading (A--F), and seven performance metrics tracked across cases.
+
+## Results
+
+The framework was tested on two NEJM-style cases. Case 1 (76-year-old female with progressive weakness): the system correctly identified Lambert-Eaton Myasthenic Syndrome with 99.9% post-test probability by Round 4, applying LRs for areflexia (LR+ 5.0), low compound muscle action potentials (LR+ 8.0), and SIADH (LR+ 3.0). Case 2 (38-year-old female with recurrent myocardial infarction): the system required five diagnostic pivots---from spontaneous coronary artery dissection (97.5%) through antiphospholipid syndrome (94.7%) and Kawasaki disease (90%) to the correct diagnosis of neurofibromatosis type 1 vasculopathy (>95%)---exposing a fundamental Bayesian limitation: post-test probability cannot exceed the probability mass assigned to hypotheses in the differential. Retrospective analysis graded each phase (D to A), identifying five specific failure modes that were converted into safety checks.
+
+## Conclusions
+
+AI-assisted CPS demonstrates systematic diagnostic reasoning with transparent, quantifiable probability updates suitable for medical education. The iterative validation-retrospective cycle---where case failures drive safety check development---provides a novel framework for continuous improvement in clinical reasoning tools. The key pedagogical insight---that Bayesian reasoning is bounded by the hypothesis space---has direct implications for teaching differential diagnosis construction.
+
+## References
