@@ -15,6 +15,12 @@ One-page A4 e-poster for the 38th World Congress of Internal Medicine
 `build.sh` renders `eposter.html` through headless Chromium and then checks the
 congress requirements (single page, A4, under 5 MB).
 
+> Rebuilding always produces a byte-different `eposter.pdf`, so git will report
+> the file as modified even when nothing changed. Chromium stamps a
+> `CreationDate`/`ModDate` and an internal accessibility-tag counter into every
+> render; the document itself is identical. Discard it with
+> `git checkout -- eposter.pdf` unless the content actually changed.
+
 ## Files
 
 | File | Purpose |
