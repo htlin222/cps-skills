@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2100 2970" width="2100" height="2970">
+  <!-- WCIM 2026 Taipei — A4 portrait letterhead, vector reconstruction.
+       Units = 0.1 mm (2100 x 2970 = 210 x 297 mm).
+       If the official template file is supplied, build.sh uses it instead. -->
+  <defs>
+    <style>
+      .navy { fill: #2B3A8F; }
+      .mag  { fill: #E6007E; }
+      .teal { fill: #009CA6; }
+      .gold { fill: #C3A25A; }
+      .plum { fill: #6E2C82; }
+      text  { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="2100" height="2970" fill="#FFFFFF"/>
+
+  <!-- ===================== HEADER: logo lockup =====================
+       Designed in a local 800 x 300 box, scaled to 541 x 203 (54 x 20 mm)
+       and placed at x=156 (15.6 mm), y=62 (6.2 mm). -->
+  <g transform="translate(156,62) scale(0.6763)">
+
+    <!-- 38th -->
+    <text x="300" y="30" class="navy" font-size="56" font-weight="700">38</text>
+    <text x="368" y="8" class="navy" font-size="30" font-weight="700">th</text>
+
+    <!-- rule across the top of the wordmark -->
+    <rect x="0" y="62" width="800" height="15" class="navy"/>
+
+    <!-- W  C -->
+    <text x="-8" y="186" class="navy" font-size="160" font-weight="700" letter-spacing="-8">W</text>
+    <text x="158" y="186" class="navy" font-size="160" font-weight="700">C</text>
+    <circle cx="216" cy="132" r="19" class="teal"/>
+
+    <!-- Taipei 101 tower serving as the "I" -->
+    <g class="teal" transform="translate(280,4)">
+      <rect x="23" y="10" width="6" height="38"/>
+      <rect x="16" y="48" width="20" height="16"/>
+      <rect x="11" y="68" width="30" height="14"/>
+      <path d="M14 86 h24 l4 20 h-32 z"/>
+      <path d="M13 110 h26 l4 20 h-34 z"/>
+      <path d="M12 134 h28 l4 20 h-36 z"/>
+      <path d="M11 158 h30 l4 18 h-38 z"/>
+      <rect x="5" y="180" width="42" height="18"/>
+    </g>
+
+    <!-- M -->
+    <text x="338" y="186" class="navy" font-size="160" font-weight="700" letter-spacing="-10">M</text>
+
+    <!-- 2026 -->
+    <text x="500" y="186" class="navy" font-size="160" font-weight="400" letter-spacing="-6">2026</text>
+
+    <!-- Taipei, Taiwan -->
+    <text x="504" y="240" class="navy" font-size="52" font-weight="700">Taipei, Taiwan</text>
+
+    <!-- colour under-bars -->
+    <path d="M0   256 h150 l-18 34 h-150 z" class="mag"/>
+    <path d="M164 256 h150 l-18 34 h-150 z" class="teal"/>
+    <path d="M328 256 h472 l-18 34 h-472 z" class="gold"/>
+  </g>
+
+  <!-- ===================== HEADER: tagline ===================== -->
+  <text x="1952" y="158" text-anchor="end" font-size="50" font-weight="700">
+    <tspan class="mag">AI</tspan><tspan class="navy">, </tspan><tspan class="teal">Medicine</tspan><tspan class="navy">, </tspan><tspan class="gold">Humanity</tspan>
+  </text>
+  <text x="1952" y="220" text-anchor="end" font-size="50" font-weight="400" class="navy">into the Future</text>
+  <rect x="735" y="242" width="1217" height="5" class="navy"/>
+
+  <!-- ===================== FOOTER ===================== -->
+  <text x="1952" y="2818" text-anchor="end" class="plum" font-size="42" font-weight="700" letter-spacing="1.2">
+    W<tspan font-size="33">ORLD</tspan> C<tspan font-size="33">ONGRESS OF</tspan> I<tspan font-size="33">NTERNAL</tspan> M<tspan font-size="33">EDICINE</tspan>
+  </text>
+
+  <path d="M0    2902 h560  l-42 68 h-518 z" class="mag"/>
+  <path d="M602  2902 h440  l-42 68 h-440 z" class="teal"/>
+  <path d="M1102 2902 h998  v68  h-1040 z"  class="gold"/>
+</svg>

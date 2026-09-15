@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WCIM 2026 E-Poster &mdash; An Artificial Intelligence Clinico-Pathological Conference</title>
+<style>
+  @page { size: 210mm 297mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #2B3A8F;
+    --mag:  #E6007E;
+    --teal: #00868E;
+    --gold: #B8913F;
+    --plum: #6E2C82;
+    --ink:  #1C1C2E;
+    --mute: #55556B;
+    --rule: #C9CEE4;
+    --tint: #F2F4FA;
+  }
+
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm; height: 297mm; overflow: hidden;
+    background: url("assets/wcim-bg.svg") 0 0 / 210mm 297mm no-repeat;
+  }
+
+  /* content sits inside the template safe area:
+     below the logo lockup / header rule, above the congress footer line */
+  .content {
+    position: absolute;
+    left: 14mm; right: 14mm; top: 30mm; bottom: 23mm;
+    display: flex; flex-direction: column;
+  }
+
+  /* ------------------------- title block ------------------------- */
+  .title {
+    font-size: 13.2pt; line-height: 1.20; font-weight: 700;
+    color: var(--navy); letter-spacing: -0.15pt;
+  }
+  .byline { margin-top: 2.2mm; font-size: 9.4pt; font-weight: 700; }
+  .affil  { margin-top: 0.7mm; font-size: 8.0pt; color: var(--mute); line-height: 1.3; }
+  .titlerule { margin-top: 2.6mm; height: 1.1mm; display: flex; gap: 1mm; }
+  .titlerule i { display: block; height: 100%; }
+  .titlerule i:nth-child(1) { background: var(--mag);  width: 22%; }
+  .titlerule i:nth-child(2) { background: var(--teal); width: 18%; }
+  .titlerule i:nth-child(3) { background: var(--gold); flex: 1; }
+
+  /* ------------------------- loop strip ------------------------- */
+  .loop {
+    margin-top: 3.0mm;
+    border: 0.3mm solid var(--rule); background: var(--tint);
+    border-radius: 1mm; padding: 2.0mm 2.4mm 2.0mm;
+  }
+  .loop h2 {
+    font-size: 8.2pt; color: var(--navy); text-transform: uppercase;
+    letter-spacing: 0.6pt; margin-bottom: 1.5mm;
+  }
+  .loop svg { display: block; width: 100%; height: auto; }
+
+  /* ------------------------- two-column body ------------------------- */
+  .cols { margin-top: 3.0mm; display: flex; gap: 5mm; flex: 1; min-height: 0; }
+  .col  { flex: 1; display: flex; flex-direction: column; }
+
+  section { margin-bottom: 2.3mm; }
+
+  h2.sec {
+    font-size: 8.4pt; color: #fff; background: var(--navy);
+    padding: 0.8mm 1.8mm; border-radius: 0.6mm;
+    text-transform: uppercase; letter-spacing: 0.45pt; margin-bottom: 1.3mm;
+  }
+  h2.sec.alt { background: var(--teal); }
+  h2.sec.acc { background: var(--plum); }
+
+  p, li { font-size: 7.7pt; line-height: 1.30; text-align: justify; }
+  p + p { margin-top: 1.05mm; }
+  ol { margin-left: 3.6mm; }
+  li { margin-bottom: 0.9mm; text-align: left; }
+  li:last-child { margin-bottom: 0; }
+  b, strong { color: var(--navy); }
+  .lead { margin-bottom: 1.3mm; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 7.3pt; }
+  th {
+    background: var(--tint); color: var(--navy); font-weight: 700; text-align: left;
+    padding: 0.8mm 1.1mm; border-bottom: 0.35mm solid var(--navy);
+  }
+  td { padding: 0.62mm 1.1mm; border-bottom: 0.22mm solid var(--rule); }
+  tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .win { color: var(--mag); font-weight: 700; }
+  .gr  { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  caption {
+    caption-side: bottom; text-align: left; font-size: 6.7pt;
+    color: var(--mute); padding-top: 0.85mm; line-height: 1.28;
+  }
+
+  .callout {
+    border-left: 1.2mm solid var(--mag); background: #FDF1F7;
+    padding: 1.6mm 2.1mm; font-size: 7.7pt; line-height: 1.30; text-align: left;
+  }
+  .callout b { color: var(--mag); }
+
+  .metrics {
+    margin-top: 1.5mm; display: flex; gap: 1.4mm;
+  }
+  .metric {
+    flex: 1; text-align: center; border: 0.3mm solid var(--rule);
+    border-radius: 0.8mm; padding: 1.0mm 0.5mm; background: #fff;
+  }
+  .metric b { display: block; font-size: 9.4pt; color: var(--teal); line-height: 1.1; }
+  .metric span { font-size: 6.6pt; color: var(--mute); line-height: 1.2; display: block; margin-top: 0.5mm; }
+
+  footer.meta {
+    margin-top: auto; padding-top: 1.5mm; border-top: 0.3mm solid var(--rule);
+    font-size: 6.6pt; color: var(--mute); line-height: 1.32; text-align: left;
+  }
+  footer.meta i { font-style: italic; }
+</style>
+<!-- Optional: build.sh writes this file to swap in the official WCIM template
+     artwork. Absent by default, which is harmless. -->
+<link rel="stylesheet" href="assets/bg-override.css">
+</head>
+<body>
+<div class="page">
+  <div class="content">
+
+    <div class="title">
+      An Artificial Intelligence Clinico-Pathological Conference: Multi-Persona Bayesian
+      Clinical Reasoning With Closed-Loop Self-Generated Bedside Safety Checks For
+      Internal Medicine Training
+    </div>
+    <div class="byline">Hsieh-Ting Lin, MD</div>
+    <div class="affil">
+      Division of Hematology &amp; Medical Oncology, Koo Foundation Sun Yat-Sen Cancer Center, Taipei, Taiwan
+    </div>
+    <div class="titlerule"><i></i><i></i><i></i></div>
+
+    <div class="loop">
+      <h2>Closed-Loop Architecture</h2>
+      <svg viewBox="0 0 1000 152" role="img"
+           aria-label="Closed loop: scenario, rounds, final diagnosis, retrospective, safety check, fed back into the reasoning engine">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#2B3A8F"/>
+          </marker>
+          <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#6E2C82"/>
+          </marker>
+          <style>
+            .bx  { fill:#fff; stroke:#C9CEE4; stroke-width:1.6; }
+            .bxh { fill:#fff; stroke:#E6007E; stroke-width:2.2; }
+            .t   { font-family:Arial,"Liberation Sans",sans-serif; text-anchor:middle; }
+            .th  { font-size:19px; font-weight:700; fill:#2B3A8F; }
+            .thh { font-size:19px; font-weight:700; fill:#E6007E; }
+            .tb  { font-size:16.5px; fill:#1C1C2E; }
+            .rt  { font-family:Arial,"Liberation Sans",sans-serif; font-size:16px; fill:#6E2C82; }
+          </style>
+        </defs>
+
+        <!-- five stages -->
+        <g>
+          <rect class="bx"  x="0"     y="0" width="179" height="98" rx="5"/>
+          <text class="t th"  x="89.5"  y="30">SCENARIO</text>
+          <text class="t tb"  x="89.5"  y="56">Case intake</text>
+          <text class="t tb"  x="89.5"  y="78">+ symptom map</text>
+
+          <rect class="bx"  x="205"   y="0" width="179" height="98" rx="5"/>
+          <text class="t th"  x="294.5" y="30">ROUNDS 1&#8211;5</text>
+          <text class="t tb"  x="294.5" y="56">8 personas,</text>
+          <text class="t tb"  x="294.5" y="78">sequential LRs</text>
+
+          <rect class="bx"  x="410"   y="0" width="179" height="98" rx="5"/>
+          <text class="t th"  x="499.5" y="30">FINAL DX</text>
+          <text class="t tb"  x="499.5" y="56">Post-test</text>
+          <text class="t tb"  x="499.5" y="78">probability</text>
+
+          <rect class="bx"  x="615"   y="0" width="179" height="98" rx="5"/>
+          <text class="t th"  x="704.5" y="30">RETROSPECTIVE</text>
+          <text class="t tb"  x="704.5" y="56">Per-phase</text>
+          <text class="t tb"  x="704.5" y="78">grade A&#8211;F</text>
+
+          <rect class="bxh" x="821"   y="0" width="179" height="98" rx="5"/>
+          <text class="t thh" x="910.5" y="30">SAFETY CHECK</text>
+          <text class="t tb"  x="910.5" y="56">self-generated</text>
+          <text class="t tb"  x="910.5" y="78">bedside rule</text>
+        </g>
+
+        <!-- forward arrows -->
+        <g stroke="#2B3A8F" stroke-width="2.4" marker-end="url(#ah)">
+          <line x1="181" y1="49" x2="200" y2="49"/>
+          <line x1="386" y1="49" x2="405" y2="49"/>
+          <line x1="591" y1="49" x2="610" y2="49"/>
+          <line x1="796" y1="49" x2="816" y2="49"/>
+        </g>
+
+        <!-- return path: safety check is written back into the engine -->
+        <path d="M910.5 98 V132 H89.5 V100"
+              fill="none" stroke="#6E2C82" stroke-width="2.4"
+              stroke-dasharray="7 5" marker-end="url(#ahp)"/>
+        <rect x="318" y="120" width="364" height="24" fill="#F2F4FA"/>
+        <text class="rt" x="500" y="137" text-anchor="middle">
+          written back into the reasoning engine
+        </text>
+      </svg>
+    </div>
+
+    <div class="cols">
+
+      <!-- ============== LEFT COLUMN ============== -->
+      <div class="col">
+
+        <section>
+          <h2 class="sec">Background &amp; Aim</h2>
+          <p>
+            Case-based teaching rarely makes explicit <b>how much</b> each finding should move a
+            diagnosis. We built an AI clinico-pathological conference (CPC) that reproduces the
+            NEJM Clinical Problem-Solving format while exposing every probability revision as an
+            auditable likelihood ratio (LR) &mdash; and that <b>audits itself</b>: the errors it
+            makes on one case become bedside safety checks constraining the next.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="sec">Methods</h2>
+          <p><b>Knowledge base.</b> 33 symptom-based chapters with LR values extracted from
+            primary diagnostic-accuracy literature (McGee; Simel &amp; Rennie).</p>
+          <p><b>Personas.</b> Eight role-specific reasoners &mdash; attending, radiologist,
+            pathologist, cardiologist, pulmonologist, infectious disease, neurologist and EBM
+            specialist &mdash; activated by case-specific triggers, not run indiscriminately.</p>
+          <p><b>Inference.</b> Sequential Bayesian updating on the odds scale (post-test odds =
+            pre-test odds &times; LR; Fagan), retaining the full probability cascade for every
+            competing hypothesis.</p>
+          <p><b>Self-audit.</b> After the final diagnosis each phase is graded A&ndash;F against a
+            checklist and every failure mode is rewritten as a reusable safety check; seven
+            performance metrics are tracked across cases.</p>
+        </section>
+
+        <section>
+          <h2 class="sec alt">Case 1 &mdash; Probability Cascade</h2>
+          <p class="lead"><b>76F</b>, six months of progressive proximal weakness, bilateral
+            ptosis, areflexia, respiratory failure, prior SIADH.</p>
+          <table>
+            <thead>
+              <tr><th>Finding</th><th class="num">LR+</th><th class="num">Pre</th><th class="num">Post</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Proximal weakness + areflexia</td><td class="num">5.0</td><td class="num">35.0%</td><td class="num">72.9%</td></tr>
+              <tr><td>Low / absent CMAPs</td><td class="num">8.0</td><td class="num">72.9%</td><td class="num">95.6%</td></tr>
+              <tr><td>SIADH (autonomic)</td><td class="num">3.0</td><td class="num">95.6%</td><td class="num">98.5%</td></tr>
+              <tr><td>Failed myasthenia therapy</td><td class="num">4.0</td><td class="num">98.5%</td><td class="num win">99.6%</td></tr>
+            </tbody>
+            <caption>Final diagnosis: Lambert-Eaton myasthenic syndrome, paraneoplastic from
+              small-cell lung cancer &mdash; on the differential from Round 1, confirmed by Round 4.</caption>
+          </table>
+        </section>
+
+        <section style="margin-bottom:0">
+          <h2 class="sec">Key Result</h2>
+          <div class="callout">
+            Post-test probability can never exceed the probability mass assigned to the
+            hypotheses actually on the list. <b>Bayesian reasoning is bounded by the hypothesis
+            space</b> &mdash; so the teachable skill is not calibration, it is differential
+            construction.
+          </div>
+          <div class="metrics">
+            <div class="metric"><b>2 / 2</b><span>correct final Dx</span></div>
+            <div class="metric"><b>100%</b><span>must-not-miss<br>sensitivity</span></div>
+            <div class="metric"><b>6</b><span>safety checks<br>self-generated</span></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ============== RIGHT COLUMN ============== -->
+      <div class="col">
+
+        <section>
+          <h2 class="sec alt">Case 2 &mdash; Five Diagnostic Pivots</h2>
+          <p class="lead"><b>38F</b>, mail carrier, myocardial infarction before age 38,
+            recurrent sudden chest pain, nitroglycerin non-responsive.</p>
+          <table>
+            <thead>
+              <tr><th>#</th><th>New data</th><th>Working Dx</th><th class="num">Prob</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Young female + prior MI</td><td>SCAD</td><td class="num">97.5%</td></tr>
+              <tr><td>2</td><td>Multi-territory infarcts</td><td>Antiphospholipid</td><td class="num">94.7%</td></tr>
+              <tr><td>3</td><td>Three-vessel aneurysms</td><td>Kawasaki</td><td class="num">90%</td></tr>
+              <tr><td>4</td><td>Cutaneous papules</td><td>Kawasaki / NF1</td><td class="num">50 / 10%</td></tr>
+              <tr><td>5</td><td>Caf&eacute;-au-lait + freckling</td><td><b>NF1 vasculopathy</b></td><td class="num win">&gt;95%</td></tr>
+            </tbody>
+            <caption>Every pivot was internally coherent and confidently wrong. NF1 never appeared
+              in the Round-1 top-ten differential, so no evidence could raise it.</caption>
+          </table>
+        </section>
+
+        <section>
+          <h2 class="sec acc">Self-Generated Safety Checks</h2>
+          <table>
+            <thead>
+              <tr><th>Check</th><th>Fires when</th><th class="num">Grade</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Red-flag history</td><td>PMH atypical for age</td><td class="num gr">D &rarr; B</td></tr>
+              <tr><td>Syndromic screen</td><td>Young + unclear etiology</td><td class="num gr">C+ &rarr; A</td></tr>
+              <tr><td>Rare-cause search</td><td>Unexpected lesion pattern</td><td class="num gr">B- &rarr; A</td></tr>
+              <tr><td>Genetic pattern</td><td>Autosomal-dominant history</td><td class="num gr">B+ &rarr; A</td></tr>
+              <tr><td>Hypothesis-space audit</td><td>After every round</td><td class="num gr">mandatory</td></tr>
+              <tr><td>Hypothesis humility</td><td>Always</td><td class="num gr">principle</td></tr>
+            </tbody>
+            <caption>All six were derived by the system from its own Case-2 failures, not written
+              in advance. Grade = retrospective phase grade before &rarr; after.</caption>
+          </table>
+        </section>
+
+        <section>
+          <h2 class="sec">Conclusions</h2>
+          <ol>
+            <li>An AI CPC makes diagnostic reasoning <b>transparent and quantifiable</b>, with an
+              auditable LR cascade behind every probability it states.</li>
+            <li>The <b>retrospective-to-safety-check loop</b> converts case failures into durable
+              constraints, improving later performance without retraining.</li>
+            <li>Trigger-based multi-persona rounds preserve subspecialty depth without
+              indiscriminate breadth.</li>
+            <li>Suitable for internal medicine training as a <b>reasoning-visible</b> adjunct to
+              case conference &mdash; decision support, not decision replacement.</li>
+          </ol>
+        </section>
+
+        <footer class="meta">
+          <b>Metrics.</b> LR completeness 85% / 78% &middot; pivot efficiency Round 1 vs Round 5.<br>
+          <b>References.</b> McGee S. <i>Evidence-Based Physical Diagnosis</i>, 4th ed. &middot;
+          Simel DL, Rennie D. <i>The Rational Clinical Examination</i> &middot; Fagan TJ.
+          <i>N Engl J Med</i> 1975;293:257.<br>
+          <b>Code and cases.</b> github.com/htlin222/cps-skills
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
