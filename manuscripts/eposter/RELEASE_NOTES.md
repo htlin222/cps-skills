@@ -10,6 +10,9 @@ Checks For Internal Medicine Training**
 Hsieh-Ting Lin, MD — Division of Hematology & Medical Oncology,
 Koo Foundation Sun Yat-Sen Cancer Center, Taipei, Taiwan
 
+Paper No. 409 · Accepted E-Poster · Theme: Artificial Intelligence in
+Internal Medicine
+
 ## Asset
 
 `eposter.pdf` — A4 portrait, 1 page, ~170 KB, Arial-metric fonts embedded.
