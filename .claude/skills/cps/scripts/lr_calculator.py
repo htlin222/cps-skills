@@ -34,6 +34,12 @@ def calculate_diagnosis(dx):
 
     Returns list of (finding_label, lr_applied, posterior) tuples
     and the final probability.
+
+    A present finding multiplies the odds by its positive likelihood ratio
+    (``lr``); an ABSENT finding must supply ``lr_negative`` — the likelihood
+    ratio for the absence of the finding — and multiplies by that. Multiplying
+    an absent finding by ``lr`` (the old behaviour) silently inflated or
+    deflated the posterior in the wrong direction.
     """
     prior = dx["prior"]
     odds = prob_to_odds(prior)
@@ -44,13 +50,19 @@ def calculate_diagnosis(dx):
         present = finding["present"]
         name = finding["name"]
 
-        odds *= lr
-        posterior = odds_to_prob(odds)
-
         if present:
+            odds *= lr
             label = f"{name}+ (\u00d7{lr})"
         else:
-            label = f"{name}\u2212 (\u00d7{lr})"
+            if "lr_negative" not in finding:
+                raise ValueError(
+                    f"finding '{name}' 为阴性（present=false）但缺少 lr_negative"
+                    "（阴性似然比）；请在该 finding 中补充，不能沿用 lr"
+                )
+            lr_neg = finding["lr_negative"]
+            odds *= lr_neg
+            label = f"{name}\u2212 (\u00d7{lr_neg})"
+        posterior = odds_to_prob(odds)
 
         steps.append((label, posterior))
 
@@ -135,7 +147,11 @@ def main():
     else:
         data = json.load(sys.stdin)
 
-    print(build_table(data))
+    try:
+        print(build_table(data))
+    except (ValueError, KeyError, TypeError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(2)
 
 
 if __name__ == "__main__":
