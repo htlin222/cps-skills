@@ -11,6 +11,7 @@ import argparse
 import re
 import os
 import sys
+import tempfile
 
 CHAPTER_META = {
     1: ("Diagnostic Process", "diagnostic-process"),
@@ -247,12 +248,18 @@ def distill_chapter(chapter_num, raw_text, output_dir):
     return output_path
 
 
+# 输出目录随脚本走（旧版硬编码上游作者的个人绝对路径，换机即失效/误写）。
+DEFAULT_OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                           "references", "chapters")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Distill raw chapter extracts into clinical references")
-    parser.add_argument('--all', action='store_true', help='Process all 33 chapters from /tmp/cps_raw_ch*.md')
+    parser.add_argument('--all', action='store_true',
+                        help='Process all 33 chapters from <临时目录>/cps_raw_ch*.md')
     parser.add_argument('input', nargs='?', help='Path to raw chapter file')
-    parser.add_argument('--output-dir', default='/Users/htlin/cps-skills/.claude/skills/cps/references/chapters',
-                        help='Output directory')
+    parser.add_argument('--output-dir', default=DEFAULT_OUT,
+                        help='Output directory (default: <skill>/references/chapters)')
     parser.add_argument('--chapter', type=int, help='Chapter number (auto-detected from filename if omitted)')
     args = parser.parse_args()
 
@@ -261,7 +268,8 @@ def main():
     if args.all:
         print(f"Distilling all 33 chapters to {args.output_dir}/")
         for ch_num in range(1, 34):
-            raw_path = f"/tmp/cps_raw_ch{ch_num}.md"
+            # 不写死 /tmp：Windows Python 会把它解析成当前盘符根下的 \tmp。
+            raw_path = os.path.join(tempfile.gettempdir(), f"cps_raw_ch{ch_num}.md")
             if not os.path.exists(raw_path):
                 print(f"  SKIP ch{ch_num:02d}: {raw_path} not found")
                 continue
