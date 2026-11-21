@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .h1 { font-size: 17px; font-weight: 700; fill: #111827; }
+    .step-num { font-size: 12px; font-weight: 700; fill: #0F766E; letter-spacing: 0.5px; }
+    .step-name { font-size: 13px; font-weight: 600; fill: #111827; }
+    .step-desc { font-size: 11px; fill: #4B5563; }
+    .check-name { font-size: 11.5px; font-weight: 600; fill: #111827; }
+    .check-desc { font-size: 10.5px; fill: #6B7280; }
+    .arrow { stroke: #111827; stroke-width: 1.2; fill: none; }
+    .loop { stroke: #0F766E; stroke-width: 1.5; fill: none; stroke-dasharray: 4,3; }
+  </style>
+
+  <text x="60" y="45" class="h1">Closed-loop learning: error to safety check</text>
+
+  <!-- Vertical pipeline of 5 steps, minimal -->
+  <line x1="80" y1="90" x2="80" y2="280" stroke="#D1D5DB" stroke-width="1"/>
+
+  <circle cx="80" cy="100" r="4" fill="#111827"/>
+  <text x="100" y="98" class="step-num">STEP 1</text>
+  <text x="100" y="116" class="step-name">Run case through seven-phase reasoning</text>
+
+  <circle cx="80" cy="160" r="4" fill="#111827"/>
+  <text x="100" y="158" class="step-num">STEP 2</text>
+  <text x="100" y="176" class="step-name">Reveal final diagnosis; compare</text>
+
+  <circle cx="80" cy="220" r="4" fill="#111827"/>
+  <text x="100" y="218" class="step-num">STEP 3</text>
+  <text x="100" y="236" class="step-name">Grade each phase A to F; classify failure mode if C or lower</text>
+
+  <circle cx="80" cy="280" r="4" fill="#0F766E"/>
+  <text x="100" y="278" class="step-num" style="fill:#0F766E;">STEP 4</text>
+  <text x="100" y="296" class="step-name" style="fill:#0F766E;">Encode each failure as a pre-phase safety check</text>
+
+  <!-- Six safety checks below, plain two columns, no boxes -->
+  <line x1="60" y1="330" x2="540" y2="330" stroke="#D1D5DB" stroke-width="1"/>
+
+  <text x="60" y="355" font-size="12" font-weight="700" fill="#111827">Six safety checks generated from two cases</text>
+
+  <g>
+    <text x="60" y="385" class="check-name">1. Red-flag history audit</text>
+    <text x="60" y="402" class="check-desc">Must-not-miss diagnoses screened</text>
+  </g>
+  <g>
+    <text x="60" y="430" class="check-name">2. Syndromic screen</text>
+    <text x="60" y="447" class="check-desc">Constellations beyond chief complaint</text>
+  </g>
+  <g>
+    <text x="60" y="475" class="check-name">3. Rare-cause search</text>
+    <text x="60" y="492" class="check-desc">Zebra diagnoses considered explicitly</text>
+  </g>
+
+  <g>
+    <text x="310" y="385" class="check-name">4. Hypothesis-space audit</text>
+    <text x="310" y="402" class="check-desc">Do all findings fit the current top 10?</text>
+  </g>
+  <g>
+    <text x="310" y="430" class="check-name">5. Genetic-pattern recognition</text>
+    <text x="310" y="447" class="check-desc">Inherited syndromes scanned</text>
+  </g>
+  <g>
+    <text x="310" y="475" class="check-name">6. Hypothesis humility</text>
+    <text x="310" y="492" class="check-desc">What is NOT in the top 10 that fits?</text>
+  </g>
+
+  <!-- Step 5 with loopback indicator -->
+  <line x1="60" y1="540" x2="540" y2="540" stroke="#D1D5DB" stroke-width="1"/>
+
+  <text x="60" y="570" class="step-num" style="fill:#0F766E;">STEP 5</text>
+  <text x="60" y="588" class="step-name" style="fill:#0F766E;">Apply checks prospectively to the next case</text>
+  <text x="60" y="608" class="step-desc">Three of six fired correctly on the second case</text>
+
+  <!-- Minimal loop indicator -->
+  <path d="M 540 580 Q 570 580 570 540 L 570 100 Q 570 70 540 70 L 90 70 L 90 90" class="loop"/>
+  <text x="540" y="80" text-anchor="end" font-size="11" fill="#0F766E" font-weight="600">errors become prospective safeguards</text>
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .h1 { font-size: 17px; font-weight: 700; fill: #111827; }
+    .group { font-size: 12px; font-weight: 700; fill: #0F766E; letter-spacing: 0.5px; }
+    .name { font-size: 13px; font-weight: 600; fill: #111827; }
+    .trig { font-size: 11px; fill: #4B5563; }
+    .note { font-size: 11px; fill: #4B5563; }
+  </style>
+
+  <text x="60" y="45" class="h1">Eight specialist personas, consulted by clinical question</text>
+
+  <!-- Group: Frontline -->
+  <text x="60" y="100" class="group">FRONTLINE REASONING</text>
+  <line x1="60" y1="108" x2="540" y2="108" stroke="#0F766E" stroke-width="1"/>
+
+  <g>
+    <text x="60" y="135" class="name">Attending physician</text>
+    <text x="60" y="153" class="trig">Synthesizes case; defends top differential</text>
+  </g>
+  <g>
+    <text x="320" y="135" class="name">Evidence-based medicine specialist</text>
+    <text x="320" y="153" class="trig">Literature search; current guidelines</text>
+  </g>
+
+  <!-- Group: Imaging / pathology -->
+  <text x="60" y="220" class="group">DIAGNOSTIC IMAGING AND PATHOLOGY</text>
+  <line x1="60" y1="228" x2="540" y2="228" stroke="#0F766E" stroke-width="1"/>
+
+  <g>
+    <text x="60" y="255" class="name">Radiologist</text>
+    <text x="60" y="273" class="trig">X-ray, computed tomography, magnetic resonance</text>
+  </g>
+  <g>
+    <text x="320" y="255" class="name">Pathologist</text>
+    <text x="320" y="273" class="trig">Histology, biopsy, tumour markers</text>
+  </g>
+
+  <!-- Group: Subspecialists -->
+  <text x="60" y="340" class="group">ORGAN-SYSTEM SUBSPECIALISTS</text>
+  <line x1="60" y1="348" x2="540" y2="348" stroke="#0F766E" stroke-width="1"/>
+
+  <g>
+    <text x="60" y="375" class="name">Cardiologist</text>
+    <text x="60" y="393" class="trig">Chest pain; arrhythmia; coronary anatomy</text>
+  </g>
+  <g>
+    <text x="320" y="375" class="name">Pulmonologist</text>
+    <text x="320" y="393" class="trig">Dyspnea; hypoxia; ventilatory failure</text>
+  </g>
+
+  <g>
+    <text x="60" y="440" class="name">Infectious diseases specialist</text>
+    <text x="60" y="458" class="trig">Fever; sepsis; opportunistic infection</text>
+  </g>
+  <g>
+    <text x="320" y="440" class="name">Neurologist</text>
+    <text x="320" y="458" class="trig">Weakness; altered mental status; seizure</text>
+  </g>
+
+  <!-- Spacer rule -->
+  <line x1="60" y1="540" x2="540" y2="540" stroke="#D1D5DB" stroke-width="1"/>
+
+  <!-- Key point, plain -->
+  <text x="60" y="570" font-size="12" font-weight="600" fill="#111827">Specialist reasoning is decomposed, not collapsed.</text>
+  <text x="60" y="592" class="note">Each persona contributes findings, likelihood ratios, and recommendations</text>
+  <text x="60" y="610" class="note">tied to the case-specific clinical question, rather than producing a single opaque output.</text>
+
+  <text x="60" y="660" font-size="11" fill="#6B7280">Reference library: 33 evidence-based clinical chapters with likelihood ratios</text>
+  <text x="60" y="678" font-size="11" fill="#6B7280">sourced from primary literature (McGee 2018; Simel and Rennie 2009).</text>
+</svg>

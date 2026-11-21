@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .h1 { font-size: 17px; font-weight: 700; fill: #111827; }
+    .sub { font-size: 12px; fill: #4B5563; }
+    .num { font-size: 13px; font-weight: 700; fill: #111827; }
+    .name { font-size: 13px; font-weight: 600; fill: #111827; }
+    .finding { font-size: 11px; fill: #4B5563; }
+    .prob { font-size: 12px; font-weight: 700; fill: #111827; }
+    .accent-name { font-size: 13px; font-weight: 600; fill: #0F766E; }
+    .accent-finding { font-size: 11px; fill: #0F766E; }
+  </style>
+
+  <text x="60" y="45" class="h1">Case B: five diagnostic pivots</text>
+  <text x="60" y="68" class="sub">38-year-old woman, recurrent myocardial infarction</text>
+
+  <!-- Vertical timeline -->
+  <line x1="80" y1="105" x2="80" y2="540" stroke="#D1D5DB" stroke-width="1"/>
+
+  <!-- Pivot 1 -->
+  <circle cx="80" cy="115" r="4" fill="#111827"/>
+  <text x="100" y="119" class="num">1</text>
+  <text x="125" y="119" class="name">Spontaneous coronary artery dissection</text>
+  <text x="125" y="137" class="finding">Young woman, myocardial infarction without atherosclerosis</text>
+  <text x="540" y="119" text-anchor="end" class="prob">97.5%</text>
+
+  <!-- Pivot 2 -->
+  <circle cx="80" cy="200" r="4" fill="#111827"/>
+  <text x="100" y="204" class="num">2</text>
+  <text x="125" y="204" class="name">Antiphospholipid syndrome</text>
+  <text x="125" y="222" class="finding">Recurrent infarction with history of fetal loss</text>
+  <text x="540" y="204" text-anchor="end" class="prob">94.7%</text>
+
+  <!-- Pivot 3 -->
+  <circle cx="80" cy="285" r="4" fill="#111827"/>
+  <text x="100" y="289" class="num">3</text>
+  <text x="125" y="289" class="name">Kawasaki coronary aneurysm</text>
+  <text x="125" y="307" class="finding">Childhood fever history with coronary aneurysm on angiography</text>
+  <text x="540" y="289" text-anchor="end" class="prob">90.0%</text>
+
+  <!-- Pivot 4: the inflection point - accent color, but no heavy fill box -->
+  <circle cx="80" cy="370" r="4" fill="#0F766E"/>
+  <text x="100" y="374" class="num" style="fill:#0F766E;">4</text>
+  <text x="125" y="374" class="accent-name">Dermatology examination expands the hypothesis space</text>
+  <text x="125" y="392" class="accent-finding">Six cafe-au-lait spots, axillary freckling, neurofibromas</text>
+
+  <!-- Pivot 5 -->
+  <circle cx="80" cy="455" r="4" fill="#0F766E"/>
+  <text x="100" y="459" class="num" style="fill:#0F766E;">5</text>
+  <text x="125" y="459" class="accent-name">Neurofibromatosis type 1 vasculopathy</text>
+  <text x="125" y="477" class="accent-finding">Final diagnosis after hypothesis-space expansion</text>
+  <text x="540" y="459" text-anchor="end" class="prob" style="fill:#0F766E;">&gt;95%</text>
+
+  <!-- Take-away, plain rule + text -->
+  <line x1="60" y1="610" x2="540" y2="610" stroke="#D1D5DB" stroke-width="1"/>
+
+  <text x="60" y="640" font-size="13" font-weight="700" fill="#111827">Bayesian updating is bounded by the hypothesis space.</text>
+  <text x="60" y="668" font-size="11.5" fill="#4B5563">Neurofibromatosis type 1 was absent from the initial top-10 differential.</text>
+  <text x="60" y="686" font-size="11.5" fill="#4B5563">No likelihood-ratio update could surface it until the dermatology examination</text>
+  <text x="60" y="704" font-size="11.5" fill="#4B5563">forced expansion of the hypothesis space (pivot 4).</text>
+
+  <text x="60" y="740" font-size="11.5" font-weight="600" fill="#0F766E">Hypothesis generation, not probability calculus, is the rate-limiting step.</text>
+</svg>

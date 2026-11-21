@@ -1,0 +1,37 @@
+TITLE (19 words):
+An Artificial Intelligence Clinico-Pathological Conference: Multi-Persona Bayesian Clinical Reasoning With Closed-Loop Self-Generated Bedside Safety Checks For Internal Medicine Training
+
+FIRST AUTHOR:
+Hsieh-Ting Lin
+Department of Hematology & Medical Oncology
+Koo Foundation Sun Yat-Sen Cancer Center, Taipei, Taiwan
+ORCID: 0009-0002-3974-4528
+Email: mail@hsiehting.com
+
+TRACK: Medical Education
+PREFERRED FORMAT: Oral Presentation
+
+================================================================
+ABSTRACT BODY (≤600 words including references)
+================================================================
+
+BACKGROUND
+Clinical reasoning is the cornerstone of internal medicine and the heart of the clinico-pathological conference (CPC) tradition, in which a discussant publicly works through each inferential step. Existing diagnostic artificial-intelligence tools produce conclusions without exposing the reasoning. We built an AI assistant that performs CPC-style clinical reasoning end-to-end: it walks through cases in the NEJM Clinical Problem-Solving format, consults multi-disciplinary specialist perspectives, applies published likelihood ratios at each inference, and - critically - retrospectively grades its own reasoning to generate bedside safety checks for subsequent cases.
+
+METHODS
+The framework comprises eight specialist personas (attending physician, radiologist, pathologist, cardiologist, pulmonologist, infectious disease, neurologist, evidence-based medicine specialist) consulted by clinical question, a Bayesian likelihood-ratio calculator using the Fagan nomogram [1], and a curated library of 33 evidence-based clinical chapters with primary-literature likelihood ratios [2,3]. Each case proceeds through seven phases: intake, symptom mapping, initial differential, multi-persona consultation rounds, evidence retrieval, sequential likelihood-ratio updating with explicit post-test probability, and final diagnosis. After the answer is revealed, each phase is graded A-F against pre-specified criteria. Any phase scoring C or lower is classified using a failure-mode taxonomy; each failure is then encoded as an executable pre-phase safety check applied prospectively to subsequent cases.
+
+RESULTS
+The AI assistant was applied to two complex cases. Case A (76-year-old woman with neuromuscular respiratory failure): the system correctly identified paraneoplastic Lambert-Eaton myasthenic syndrome from small-cell lung cancer with 99.9% post-test probability after sequential application of likelihood ratios for areflexia (5.0), low compound muscle action potentials (8.0), and the syndrome of inappropriate antidiuretic hormone secretion (3.0) reframed as autonomic involvement [4]. Two phases graded C; two failure modes identified. Case B (38-year-old woman with recurrent myocardial infarction): the system required five differential pivots to reach neurofibromatosis type 1 vasculopathy; four phases graded C or D, exposing four failure modes including the central finding that posterior probability is bounded by the hypothesis space considered. Across both cases, six reusable safety checks were generated: red-flag history audit, syndromic screen, rare-cause search, hypothesis-space audit, genetic-pattern recognition, and hypothesis humility. Three of six fired correctly on the second case.
+
+DISCUSSION
+The framework grounds diagnostic artificial intelligence in two clinician-recognised traditions: the clinico-pathological conference and evidence-based medicine. It differs from existing diagnostic AI in three respects: every probability shift is auditable via published likelihood ratios; specialist reasoning is decomposed across explicit personas rather than collapsed into a single opaque output; and the system learns prospectively from its own errors through retrospective grading. The central pedagogical finding - that Bayesian updating cannot rescue a diagnosis absent from the hypothesis space - argues that hypothesis generation, not probability calibration, is the rate-limiting step. Two cases are insufficient for outcome claims; the contribution is methodological, with the diagnostic phase (twenty graded phases here), not the case, as the unit of analysis. Limitations include grading subjectivity, selection bias, and absence of a comparator. A prospective registry with consecutive cases and blinded grading is the natural next step.
+
+CONCLUSIONS
+A clinico-pathological conference-style AI reasoning assistant that grades its own diagnostic decisions converted two complex cases into a six-check bedside library, demonstrating that clinical reasoning can be made simultaneously visible, auditable, and self-improving. The approach reframes artificial intelligence in clinical education from oracle to discussant whose acknowledged mistakes seed the next generation of safeguards.
+
+REFERENCES
+1. Fagan TJ. Nomogram for Bayes's theorem. N Engl J Med. 1975;293(5):257.
+2. McGee S. Evidence-Based Physical Diagnosis. 4th ed. Philadelphia: Elsevier; 2018.
+3. Simel DL, Rennie D. The Rational Clinical Examination. New York: McGraw-Hill; 2009.
+4. Titulaer MJ, et al. DELTA-P score predicts SCLC in Lambert-Eaton myasthenic syndrome. J Clin Oncol. 2011;29(7):902-908.

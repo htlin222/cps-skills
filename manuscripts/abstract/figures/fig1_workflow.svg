@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .h1 { font-size: 17px; font-weight: 700; fill: #111827; }
+    .num { font-size: 13px; font-weight: 700; fill: #0F766E; }
+    .phase { font-size: 13px; font-weight: 600; fill: #111827; }
+    .desc { font-size: 11px; fill: #4B5563; }
+    .arrow { stroke: #111827; stroke-width: 1.2; fill: none; }
+    .loop { stroke: #0F766E; stroke-width: 1.5; fill: none; stroke-dasharray: 4,3; }
+    .loop-lbl { font-size: 11px; font-weight: 600; fill: #0F766E; }
+  </style>
+
+  <!-- Plain title -->
+  <text x="60" y="45" class="h1">Seven-phase AI clinical reasoning workflow</text>
+
+  <!-- 7 phases as a clean numbered list with vertical connector -->
+  <line x1="80" y1="90" x2="80" y2="630" stroke="#D1D5DB" stroke-width="1"/>
+
+  <g>
+    <text x="76" y="100" text-anchor="end" class="num">1</text>
+    <text x="110" y="100" class="phase">Case intake and red-flag validation</text>
+    <text x="110" y="118" class="desc">History, examination, must-not-miss screen</text>
+  </g>
+
+  <g>
+    <text x="76" y="180" text-anchor="end" class="num">2</text>
+    <text x="110" y="180" class="phase">Symptom mapping and initial differential</text>
+    <text x="110" y="198" class="desc">Map findings to evidence-based chapters; pre-test probabilities</text>
+  </g>
+
+  <g>
+    <text x="76" y="260" text-anchor="end" class="num">3</text>
+    <text x="110" y="260" class="phase">Multi-persona consultation rounds</text>
+    <text x="110" y="278" class="desc">Eight specialist viewpoints consulted by clinical question</text>
+  </g>
+
+  <g>
+    <text x="76" y="340" text-anchor="end" class="num">4</text>
+    <text x="110" y="340" class="phase">Evidence retrieval</text>
+    <text x="110" y="358" class="desc">Literature search; current guidelines; likelihood-ratio sourcing</text>
+  </g>
+
+  <g>
+    <text x="76" y="420" text-anchor="end" class="num">5</text>
+    <text x="110" y="420" class="phase">Sequential Bayesian updating</text>
+    <text x="110" y="438" class="desc">Published likelihood ratios applied via the Fagan nomogram</text>
+  </g>
+
+  <g>
+    <text x="76" y="500" text-anchor="end" class="num">6</text>
+    <text x="110" y="500" class="phase">Final diagnosis</text>
+    <text x="110" y="518" class="desc">Post-test probability synthesized</text>
+  </g>
+
+  <g>
+    <text x="76" y="580" text-anchor="end" class="num" style="fill:#0F766E;">7</text>
+    <text x="110" y="580" class="phase" style="fill:#0F766E;">Retrospective grading (A to F)</text>
+    <text x="110" y="598" class="desc">Phase-by-phase rubric; failure modes encoded as new safety checks</text>
+  </g>
+
+  <!-- Dot markers on the vertical line -->
+  <circle cx="80" cy="96" r="3" fill="#111827"/>
+  <circle cx="80" cy="176" r="3" fill="#111827"/>
+  <circle cx="80" cy="256" r="3" fill="#111827"/>
+  <circle cx="80" cy="336" r="3" fill="#111827"/>
+  <circle cx="80" cy="416" r="3" fill="#111827"/>
+  <circle cx="80" cy="496" r="3" fill="#111827"/>
+  <circle cx="80" cy="576" r="3" fill="#0F766E"/>
+
+  <!-- Loop back: phase 7 -> phase 1 -->
+  <path d="M 80 580 L 40 580 L 40 96 L 80 96" class="loop"/>
+  <text x="32" y="340" class="loop-lbl" transform="rotate(-90 32 340)">Fed forward to next case</text>
+
+  <!-- Single take-away line, plain -->
+  <line x1="60" y1="680" x2="540" y2="680" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="60" y="710" font-size="12" font-weight="600" fill="#111827">Outcome:</text>
+  <text x="125" y="710" font-size="12" fill="#111827">two cases generated six reusable bedside safety checks;</text>
+  <text x="125" y="728" font-size="12" fill="#111827">three of six fired correctly on the second case.</text>
+</svg>

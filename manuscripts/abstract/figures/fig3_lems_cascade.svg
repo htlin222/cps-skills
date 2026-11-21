@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .h1 { font-size: 17px; font-weight: 700; fill: #111827; }
+    .sub { font-size: 12px; fill: #4B5563; }
+    .axis-lbl { font-size: 10.5px; fill: #6B7280; }
+    .axis-title { font-size: 11px; font-weight: 600; fill: #111827; }
+    .step-lbl { font-size: 11px; font-weight: 600; fill: #111827; }
+    .step-lr { font-size: 10px; fill: #6B7280; }
+    .prob-text { font-size: 12px; font-weight: 700; fill: #111827; }
+    .dx { font-size: 12px; font-weight: 600; fill: #0F766E; }
+  </style>
+
+  <text x="60" y="45" class="h1">Case A: Bayesian probability cascade</text>
+  <text x="60" y="68" class="sub">76-year-old woman, neuromuscular respiratory failure</text>
+
+  <!-- Y-axis title -->
+  <text x="60" y="105" class="axis-title">Post-test probability of Lambert-Eaton myasthenic syndrome</text>
+
+  <!-- Plot area -->
+  <!-- y: 120 (top, 100%) to 600 (bottom, 0%) => 480 tall -->
+  <!-- Subtle gridlines only at 50% and 100% -->
+  <line x1="100" y1="120" x2="560" y2="120" stroke="#E5E7EB" stroke-width="1"/>
+  <line x1="100" y1="360" x2="560" y2="360" stroke="#E5E7EB" stroke-width="1"/>
+  <line x1="100" y1="600" x2="560" y2="600" stroke="#111827" stroke-width="1"/>
+  <line x1="100" y1="120" x2="100" y2="600" stroke="#111827" stroke-width="1"/>
+
+  <!-- Y tick labels: just 0, 50, 100 -->
+  <text x="92" y="124" text-anchor="end" class="axis-lbl">100%</text>
+  <text x="92" y="364" text-anchor="end" class="axis-lbl">50%</text>
+  <text x="92" y="605" text-anchor="end" class="axis-lbl">0%</text>
+
+  <!-- Diagnostic threshold dashed line at 95% => y = 120 + 0.05*480 = 144 -->
+  <line x1="100" y1="144" x2="560" y2="144" stroke="#0F766E" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="105" y="158" font-size="10" fill="#0F766E">95% diagnostic threshold</text>
+
+  <!-- Bars: 5 bars, uniform color, 80 wide -->
+  <!-- bar top = 600 - (p/100)*480 -->
+
+  <!-- 35%: top = 600 - 168 = 432 -->
+  <rect x="120" y="432" width="70" height="168" fill="#E5E7EB"/>
+  <text x="155" y="425" text-anchor="middle" class="prob-text">35%</text>
+
+  <!-- 73%: top = 600 - 350.4 = 249.6 -->
+  <rect x="210" y="250" width="70" height="350" fill="#9CA3AF"/>
+  <text x="245" y="243" text-anchor="middle" class="prob-text">73%</text>
+
+  <!-- 96%: top = 600 - 460.8 = 139.2 -->
+  <rect x="300" y="139" width="70" height="461" fill="#0F766E"/>
+  <text x="335" y="132" text-anchor="middle" class="prob-text" style="fill:#0F766E;">96%</text>
+
+  <!-- 99%: top = 600 - 475.2 = 124.8 -->
+  <rect x="390" y="125" width="70" height="475" fill="#0F766E"/>
+  <text x="425" y="118" text-anchor="middle" class="prob-text" style="fill:#0F766E;">99%</text>
+
+  <!-- 99.9%: top = 600 - 479.5 = 120.5 -->
+  <rect x="480" y="121" width="70" height="479" fill="#0F766E"/>
+  <text x="515" y="118" text-anchor="middle" class="prob-text" style="fill:#0F766E;">99.9%</text>
+
+  <!-- X-axis labels -->
+  <text x="155" y="622" text-anchor="middle" class="step-lbl">Pre-test</text>
+  <text x="155" y="638" text-anchor="middle" class="step-lr">proximal weakness</text>
+
+  <text x="245" y="622" text-anchor="middle" class="step-lbl">+ Areflexia</text>
+  <text x="245" y="638" text-anchor="middle" class="step-lr">LR+ 5.0</text>
+
+  <text x="335" y="622" text-anchor="middle" class="step-lbl">+ Low CMAPs</text>
+  <text x="335" y="638" text-anchor="middle" class="step-lr">LR+ 8.0</text>
+
+  <text x="425" y="622" text-anchor="middle" class="step-lbl">+ Prior SIADH</text>
+  <text x="425" y="638" text-anchor="middle" class="step-lr">LR+ 3.0</text>
+
+  <text x="515" y="622" text-anchor="middle" class="step-lbl">+ Failed MG Rx</text>
+  <text x="515" y="638" text-anchor="middle" class="step-lr">LR+ 4.0</text>
+
+  <!-- Final diagnosis, plain two-line layout -->
+  <line x1="60" y1="700" x2="540" y2="700" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="60" y="725" font-size="12" font-weight="600" fill="#111827">Final diagnosis</text>
+  <text x="60" y="747" class="dx">Paraneoplastic Lambert-Eaton myasthenic syndrome</text>
+  <text x="60" y="765" class="dx">from small-cell lung cancer</text>
+</svg>
